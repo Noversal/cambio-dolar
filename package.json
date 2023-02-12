@@ -1,0 +1,25 @@
+{
+  "name": "dolar-cambio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite ./app",
+    "build": "vite build ./app",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Noversal/cambio-dolar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "1.30.0",
+  },
+  "devDependencies": {
+    "eslint": "8.33.0",
+    "eslint-plugin-react": "7.32.2",
+  }
+}
