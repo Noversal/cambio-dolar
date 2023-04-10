@@ -1,0 +1,131 @@
+@use './variables' as *;
+@use "sass:map";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+body{
+    font-family: system-ui;
+    background: map-get($map: $colores, $key: titulo);
+    color: map-get($map:$colores,$key: input);
+}
+
+.calc{
+    padding: 10px;
+    height: calc(100vh - 2.5rem);
+    margin: 0 auto;
+    gap: 15px;
+    max-width: 500px;
+    width : 100%;
+    margin-top:2.5rem;
+
+    &__container{
+        display: grid;
+        gap: 10px;
+        margin:auto;
+        padding: 0 20px;
+        max-width: 350px;
+    }
+
+    &__head{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title{
+        text-align: center;
+        font-size: 2.5rem;
+        display: flex;
+        flex-direction: column;
+
+        & .green{
+            color: map-get($map: $colores, $key: borde)
+        }
+    }
+
+    
+    &__res{
+        // visibility: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 150px;
+        background: map-get($map: $colores, $key: fondo-down);
+        max-width: 300px;
+        border-radius: 15px;
+        margin:auto;
+        margin-top: 25px;
+        position: relative;
+
+        & div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 17px
+        }
+    }
+}
+
+
+
+.form{
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &__valorDolar{
+        text-align: center;
+        padding: 17px 10px;
+        border-radius: 10px;
+        background: map-get($map: $colores, $key: fondo-up);
+        color: map-get($map: $colores, $key: input);
+        font-size: .95rem;
+        font-weight: 700;
+
+        & + label{
+            margin-top: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+    }
+    
+    &__dolarPrice{
+        text-align: center;
+        padding: 17px 10px;
+        font-size: .95rem;
+        font-weight: 700;
+        background: map-get($map: $colores, $key: fondo-up);
+        color: map-get($map: $colores, $key: input);
+        border-radius: 10px;
+        
+        &::placeholder{
+            font-size: .95rem;
+            font-weight: 700;
+        }
+
+        &:focus-visible{
+            outline: none;
+        }
+    }
+
+    
+    &__button{
+        padding: 20px 10px;
+        border-radius: 15px;
+        margin-top: 20px;
+        background: map-get($map: $colores, $key:borde);
+        // color: map-get($map: $colores, $key: fondo-up);
+        font-size: 1.4rem;
+        font-weight: 900;
+
+        &:hover{
+            transform: scale(.95);
+        }
+    }  
+}
