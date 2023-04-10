@@ -1,4 +1,6 @@
-import OptionDolars from './components/OptionDolar';
+import { useState } from 'react';
+import OptionDolar from './components/OptionDolar';
+// import json from '../../db/data.json'
 
 const dolarInfo = [
   {name:'DÓLAR 🔵',value:'DÓLAR BLUE',key:1},
@@ -9,74 +11,70 @@ const dolarInfo = [
 ];
 
 function App() {
+  const [valueDolar, updateValueDolar] = useState(100)
+  const [cambio, setCambio] = useState()
+  const [cajaRes, setCajaRes] = useState(false)
+  const MONEY_DEFAULT = dolarInfo[1].name
 
+
+  let json = null
+  async function obtenerData(e) {
+    e.preventDefault()
+    if (!json) {
+      json = await import('../../db/data.json')
+    }
+    console.log(json.default)
+    const dolarPrice = Number(json.default[1].price)
+    console.log(dolarPrice * valueDolar)
+    setCambio(dolarPrice * valueDolar)
+    if (!cajaRes) {
+      setCajaRes(true)
+    }
+    e.target.reset()
+  }
+  
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      height: '100vh'
-    }}>
-      <header style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '7px'
-      }}>
-        <h1 style={{
-          textAlign: 'center',
-          fontSize: '40px',
-          fontWeight: 'bold',
-          color: 'black'
-        }}>
-          Dólares
+    <main className='calc'>
+      <section className='calc__container'>
+        <h1 className='calc__title'>
+            <span>Cambio de </span> <span className="green"> Dólares</span>
         </h1>
-        <form style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '1.5rem',
-        }}>
+        <form className='form' onSubmit={obtenerData}>
           <select
-            style={{
-              textAlign: 'center',
-              width: '150px',
-              padding: '3.5px 7px',
-              borderRadius: '5px',
-              border: '1px solid blue'
-            }}
-            name='Valores de Dolar'
+            className='form__valorDolar'
+            name='valoresDeDolar'
             title='Valores de Dolar'
           >
-            <OptionDolars dolarInfo={dolarInfo} />
+            <OptionDolar dolarInfo={dolarInfo} />
             
           </select>
-          <label htmlFor='dolar' style={{fontSize:'21px'}}>Cantidad de Dolares</label>
-          <input id='dolar' style={{
-            textAlign: 'center',
-            width: '150px',
-            padding: '3.5px 7px',
-            borderRadius: '5px',
-            border: '1px solid blue',
-          }}
-          type='text'
-          placeholder='50,100,150,200 ...'
-          title='Cantidad de Dolares'
+          <label htmlFor='dolar'>Cantidad de Dolares</label>
+          <input
+            value={valueDolar}
+            name='dolar'
+            className='form__dolarPrice'
+            type='text'
+            placeholder='50,100,150,200 ...'
+            title='Cantidad de Dolares'
+            onChange={(e)=> updateValueDolar(Number(e.target.value))}
           />
-          <button style={{
-            width: '150px',
-            maxWidth: '400px',
-            border: '1px solid blue',
-            padding: '7px 14px',
-            fontWeight: 'bold',
-            borderRadius: '5px'
-          }}> CALCULAR </button>
+          <button className='form__button'> CALCULAR </button>
         </form>
-      </header>
-      <main>
-
-      </main>
-    </div>
+      </section>
+      {
+        cajaRes ? 
+        <section className='calc__res'>
+        <span
+          style={{ position: 'absolute', top: '12px', right: "15px", fontWeight: 700, fontSize: '1.3rem' }}
+          onClick={()=> {setCajaRes(false)}}>X</span>
+          <div>
+            <p>CONVERSION:</p>
+            <p>AR$ {cambio}</p>
+          </div>
+          </section> : 
+          <section style={{visibility:'hidden'}}></section>
+      }
+    </main>
   );
 }
 

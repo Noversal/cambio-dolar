@@ -1,4 +1,4 @@
-function OptionDolar({name, value} ) {
+function OptionDolar({name, value}) {
   return (
     <>
       <option value={value}>{name}</option>
@@ -16,4 +16,4 @@ export default ({ dolarInfo }) => {
     />
   );
 };
-  
+ 
