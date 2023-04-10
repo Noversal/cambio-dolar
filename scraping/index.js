@@ -1,6 +1,6 @@
-const { chromium } = require('playwright');
-const fs = require('node:fs/promises');
-const path = require('node:path');
+import { chromium } from 'playwright';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 async function getBrowserAndPage() {
   const browser = await chromium.launch();
@@ -41,7 +41,7 @@ function dataInformationProcessing(valueArray) {
   });
 }
 
-(async function () {
+export default (async ()  => {
   const { browser, page } = await getBrowserAndPage();
   const URL = 'https://www.cronista.com/informacion-de-mercados/';
   const locate = '.items-3 > li span';
@@ -49,6 +49,7 @@ function dataInformationProcessing(valueArray) {
   const processedData = dataInformationProcessing(scrapedData);
   const pathDB = path.join(process.cwd(), 'db', 'data.json');
   await fs.writeFile(pathDB, JSON.stringify(processedData, null, 2), 'utf-8');
-
+  
   await browser.close();
-})();
+  return processedData;
+})
