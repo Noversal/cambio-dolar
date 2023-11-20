@@ -1,13 +1,10 @@
-import { useDolar } from '../hooks/useDolar'
 import { getData } from '../service/getData'
 import { formaterNumber } from '../utils'
 import { OptionDolar } from  './OptionDolar'
 
 const stateCambio = new CustomEvent('cambio', { detail: { boxState: true, res: '' } })
 
-export default function Form() {
-
-    const dolarOptions = useDolar()
+export default function Form({ dolarOptions }) {
 
     const calcularValor = async ({dolarInput, option}) => {
         const [values] = await getData()
@@ -40,8 +37,6 @@ export default function Form() {
     
     return (
     <>
-        {dolarOptions ? (        
-        <>
         <h1 className='calc__title'>
             <span>Cambio de </span> <span className="green"> Dólares</span>
         </h1>
@@ -69,9 +64,6 @@ export default function Form() {
         />
         <button className='form__button'> CALCULAR </button>
             </form>
-        </>
-        ): <h1>Cargando ...</h1>
-            }
     </>
     )
 }
