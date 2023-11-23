@@ -1,20 +1,20 @@
 import { getData } from '../service/getData'
-import { formaterNumber } from '../utils'
+import { formaterNumber, regulationMoney } from '../utils'
 import { OptionDolar } from  './OptionDolar'
 
 const stateCambio = new CustomEvent('cambio', { detail: { boxState: true, res: '' } })
 
 export default function Form({ dolarOptions }) {
 
-    const calcularValor = async ({dolarInput, option}) => {
+    const calcularValor = async ({ dolarInput, option }) => {
         const [values] = await getData()
         const money = values.find((value) => value.name === option)
         
         if (dolarInput === '0') dolarInput = '1'
-    
-        const valueResponse = Number(money.price) * Number(dolarInput)
+        const moneyRegalate = regulationMoney({money: money.price})
+        const valueResponse = Number(moneyRegalate) * Number(dolarInput)
       
-       const res = formaterNumber({value:valueResponse})
+        const res = formaterNumber({value:valueResponse})
 
         return res
       }

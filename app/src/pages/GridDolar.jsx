@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getData } from "../service/getData";
+import { regulationMoney } from '../utils.js'
 
 export default function GridDolar() {
   const [value, setValue] = useState(null)
@@ -20,11 +21,12 @@ export default function GridDolar() {
           </tr>
         </thead>
         <tbody>
-          {value.map(({name, price}) => {
+          {value.map(({ name, price }) => {
+            const valueRegular = regulationMoney({ money:price })
             return (
             <tr key={name}>
               <td>{name}</td>
-              <td>{price}</td>
+              <td>{valueRegular}</td>
             </tr>
             )
           })}

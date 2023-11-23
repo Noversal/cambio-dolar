@@ -7,3 +7,7 @@ export function formaterNumber({ value }) {
   }
   return res
 }
+
+export function regulationMoney({money}) {
+  return money.replace(/\.(?=[^.]*\.)/g, '')
+} 
