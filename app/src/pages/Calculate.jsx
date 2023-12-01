@@ -9,9 +9,8 @@ export default function Calculate() {
       <main className='calc'>
         <section className='calc__container'>
           {
-            dolarOptions ?
+            dolarOptions &&
               <Form dolarOptions={dolarOptions} />
-              : <h1>Cargando ...</h1>
           }
         </section>
         <section>

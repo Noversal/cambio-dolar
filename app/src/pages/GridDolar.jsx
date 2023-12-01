@@ -8,30 +8,33 @@ export default function GridDolar() {
   useEffect(() => {
     getData().then(([data]) => {
       setValue(data)
-    }) 
+    })
   }, [])
   
-  return (<div>
-    {value ?
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {value.map(({ name, price }) => {
-            const valueRegular = regulationMoney({ money:price })
-            return (
-            <tr key={name}>
-              <td>{name}</td>
-              <td>{valueRegular}</td>
+  return (
+    <>
+      {
+        value &&
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Precio</th>
             </tr>
-            )
-          })}
-        </tbody>
-      </table>
-      : <h1>Cargando ...</h1>}
-  </div>);
+          </thead>
+          <tbody>
+            {value.map(({ name, price }) => {
+              const valueRegular = regulationMoney({ money: price })
+              return (
+                <tr key={name}>
+                  <td>{name}</td>
+                  <td>$ {valueRegular}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      }
+    </>
+ );
 }
