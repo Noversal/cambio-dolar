@@ -1,7 +1,9 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Calculate from "./pages/Calculate";
-import GridDolar from "./pages/GridDolar";
+import { BrowserRouter, Link, NavLink, Route, Routes } from "react-router-dom";
+import {Suspense, lazy} from 'react'
+import Spinner from "./components/Spinner";
 
+const Calculate = lazy(() => import('./pages/Calculate'))
+const GridDolar = lazy(() => import('./pages/GridDolar'))
 
 function App() {
   const style = {
@@ -14,20 +16,38 @@ function App() {
     },
     body: {
       display: 'flex',
-      gap: '7px'
+      gap: '7px',
+      'justify-content': 'center',
+      padding: '20px'
     }
   }
 
   return (
     <BrowserRouter>
       <div style={style.body}>
-        <Link style={style.button} to='/'>Calculadora</Link>
-        <Link style={style.button} to='/value'>Valores</Link>
+        <NavLink style={
+          ({ isActive }) => isActive ?
+            style.button : {
+            color: 'white',
+            textDecoration: 'none',
+            padding: '13px',}} to='/'>Calculadora</NavLink>
+        
+        <NavLink style={
+          ({ isActive }) => isActive ?
+            style.button : {
+              color: 'white',
+              textDecoration: 'none',
+              padding: '13px',
+          }}
+          to='/value'>Valores</NavLink>
+        
       </div>
-    <Routes>
-        <Route path="/" element={<Calculate />} />
-        <Route path="/value" element={<GridDolar />} />
-    </Routes>
+      <Suspense fallback={<Spinner/>}>
+        <Routes>
+          <Route path="/" element={<Calculate />} />
+          <Route path="/value" element={<GridDolar />} />
+        </Routes>
+      </Suspense>
   </BrowserRouter>
   );
 }
