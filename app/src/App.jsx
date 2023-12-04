@@ -17,7 +17,7 @@ function App() {
     body: {
       display: 'flex',
       gap: '7px',
-      'justify-content': 'center',
+      justifyContent: 'center',
       padding: '20px'
     }
   }
@@ -42,7 +42,7 @@ function App() {
           to='/value'>Valores</NavLink>
         
       </div>
-      <Suspense fallback={<Spinner/>}>
+      <Suspense fallback={<Spinner />}>
         <Routes>
           <Route path="/" element={<Calculate />} />
           <Route path="/value" element={<GridDolar />} />

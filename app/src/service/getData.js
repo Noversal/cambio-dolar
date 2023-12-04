@@ -1,6 +1,6 @@
 const URL = 'https://api-dolar-t0jy.onrender.com/api/v1'
 export function getData() {
-    return fetch(URL + '/dolar')
+    return fetch(`${URL}/dolar`)
       .then(res => {
         if (res.ok) {
           return res.json()
@@ -8,8 +8,8 @@ export function getData() {
         throw res
       })
       .then(data => {
-        const date = data.pop()        
-        return [data,date]
+        const { results, date } = data       
+        return [results,date]
       }
     )
 }

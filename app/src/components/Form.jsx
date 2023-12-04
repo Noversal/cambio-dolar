@@ -2,6 +2,7 @@ import { getData } from '../service/getData'
 import { formaterNumber, regulationMoney } from '../utils'
 import { OptionDolar } from  './OptionDolar'
 
+
 const stateCambio = new CustomEvent('cambio', { detail: { boxState: true, res: '' } })
 
 export default function Form({ dolarOptions }) {

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { getData } from "../service/getData";
 import { regulationMoney } from '../utils.js'
+import Spinner from "../components/Spinner.jsx";
 
 export default function GridDolar() {
   const [value, setValue] = useState(null)
