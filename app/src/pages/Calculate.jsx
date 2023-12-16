@@ -1,17 +1,11 @@
-import Form from "../components/Form";
-import { BoxDolar } from "../components/BoxDolar";
-import { useDolar } from "../hooks/useDolar";
+import Form from '../components/Form';
+import BoxDolar  from '../components/BoxDolar';
 
 export default function Calculate() {
-  const dolarOptions = useDolar()
-
   return (
         <main className='calc'>
           <section className='calc__container'>
-            {
-              dolarOptions &&
-                <Form dolarOptions={dolarOptions} />
-            }
+            <Form />
           </section>
           <section>
             <BoxDolar />

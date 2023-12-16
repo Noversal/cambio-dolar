@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { optionsValues } from "../service/getData"
+import { useState, useEffect } from 'react'
+import { optionsValues } from '../service/getData'
 
 export function useDolar() {
     const [dolarInfo, setInfo] = useState(null)
