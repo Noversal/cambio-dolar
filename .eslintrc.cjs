@@ -2,15 +2,15 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true,
+    node: true
   },
   extends: ['eslint:recommended', 'plugin:react/recommended', 'standard'],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module',
+    sourceType: 'module'
   },
-  plugins: ['react','jsx'],
+  plugins: ['react', 'jsx'],
   rules: {
     indent: ['error', 2],
     'linebreak-style': 'off',
@@ -18,5 +18,5 @@ module.exports = {
     semi: 'error',
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off'
-  },
-};
+  }
+}
