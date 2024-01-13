@@ -10,8 +10,8 @@
 
 body{
     font-family: system-ui;
-    background: map-get($map: $colores, $key: titulo);
-    color: map-get($map:$colores,$key: input);
+    background: map-get($map: $colores, $key: focus);
+    color: rgb(8, 10, 9);
 }
 
 .calc{
@@ -43,7 +43,9 @@ body{
         flex-direction: column;
 
         & .green{
-            color: map-get($map: $colores, $key: borde)
+            color: map-get($map: $colores, $key: focus);
+            background:#282828;
+            border-radius: 50px ;
         }
     }
 
@@ -61,11 +63,15 @@ body{
         margin-top: 25px;
         position: relative;
 
-        & div{
+        &-contain {
             display: flex;
-            flex-direction: column;
+            font-weight: bold;
+            flex-direction: row;
+            gap:17px;
             align-items: center;
-            gap: 17px
+        } 
+        &-value {
+            font-size: 40px;
         }
     }
 }
@@ -113,28 +119,39 @@ body{
             outline: none;
         }
     }
+}
 
-    
-    &__button{
-        padding: 20px 10px;
-        border-radius: 15px;
-        margin-top: 20px;
-        background: map-get($map: $colores, $key:borde);
-        // color: map-get($map: $colores, $key: fondo-up);
-        font-size: 1.4rem;
-        font-weight: 900;
+.button {
+    padding: 20px 10px;
+    border-radius: 15px;
+    margin-top: 20px;
+    background: map-get($map: $colores, $key:borde);
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #b7cc18;
+
+    &__link{
+        text-decoration: none;
+        font-size: 17px;
+    }
+    &__primary {
 
         &:hover{
             transform: scale(.95);
         }
-    }  
+    }
+
+    &__secondary {
+        background: transparent;
+        color:rgb(8, 10, 9);
+    }
 }
 
 #loading {
     display: inline-block;
     width: 50px;
     height: 50px;
-    border: 3px solid rgba(255,255,255,.3);
+    border: 3px solid rgb(8, 10, 9);
     border-radius: 50%;
     border-top-color: #fff;
     animation: spin 1s ease-in-out infinite;
@@ -160,16 +177,29 @@ table {
     margin: auto;
     table-layout: fixed;
     width: 100%;
-    border: 1px solid #0D8000;
-    max-width: 300px;
+    max-width: 325px;
     border-spacing: 0;
 
     td {
         padding-block: 7px;
         text-align: center;
-        border: 1px solid #0D8000;
     }
     th {
         padding-block: 7px;
     }
+
+    td:nth-child(2){
+        color:red;
+    }
+    td:nth-child(1){
+        width: 150px;
+    }
+}
+
+button {
+    background: none;
+}
+
+.icon{
+    width: 25px;
 }
