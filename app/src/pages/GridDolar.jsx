@@ -23,19 +23,22 @@ export default function GridDolar () {
         </tr>
       </thead>
       <tbody>
-        {
-          value.length !== 0 &&
-            value.map(({ name, price }) => {
-              const valueRegular = regulationMoney({ money: price })
-              return (
-                <tr key={name}>
-                  <td>{name}</td>
-                  <td> <Arrow className='icon' /> </td>
-                  <td style={{ display: 'flex', gap: '7px', alignItems: 'center' }}>$ {valueRegular} {/* <button> <Graph className='icon' /> </button> */}</td>
-                </tr>
-              )
-            })
-        }
+        {value.length !== 0 &&
+          value.map(({ name, price }) => {
+            const valueRegular = regulationMoney({ money: price })
+            return (
+              <tr key={name}>
+                <td>{name}</td>
+                <td>
+                  <Arrow className='icon' />
+                </td>
+                <td className='price'>
+                  $ {valueRegular}
+                  {/* <button> <Graph className='icon' /> </button> */}
+                </td>
+              </tr>
+            )
+          })}
       </tbody>
     </table>
   )
